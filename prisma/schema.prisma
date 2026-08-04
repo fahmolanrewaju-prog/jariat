@@ -24,4 +24,5 @@ model Video {
   thumbnail   String?
   isFree      Boolean  @default(true)
   createdAt   DateTime @default(now())
+  uploadedBy  String?  // <--- This is the only new line
 }
