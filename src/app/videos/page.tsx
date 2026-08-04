@@ -7,6 +7,7 @@ export default function VideosPage() {
   const [password, setPassword] = useState('');
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [showAuth, setShowAuth] = useState(false);
+  const [showDonate, setShowDonate] = useState(false);
 
   // Sample Islamic videos (You can replace these URLs later)
   const videos = [
@@ -32,8 +33,11 @@ export default function VideosPage() {
           >
             Sign Up / Log In
           </button>
-          <button className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition">
-            Subscribe (Remove Ads)
+          <button 
+            onClick={() => setShowDonate(true)}
+            className="bg-emerald-100 hover:bg-emerald-200 text-emerald-800 px-4 py-2 rounded-lg text-sm font-medium transition border border-emerald-200"
+          >
+            ☕ Donate to Support
           </button>
         </div>
       </div>
@@ -98,6 +102,40 @@ export default function VideosPage() {
             <p className="text-center text-xs text-gray-500 mt-4">
               By signing up, you agree to our Terms of Service.
             </p>
+          </div>
+        </div>
+      )}
+
+      {/* --- DONATION MODAL --- */}
+      {showDonate && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
+          <div className="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md relative">
+            <button 
+              onClick={() => setShowDonate(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-xl"
+            >
+              ✕
+            </button>
+            <div className="text-center">
+              <h2 className="text-2xl font-bold mb-2 text-emerald-800">Support Jariat 🤲</h2>
+              <p className="text-gray-600 text-sm mb-6">
+                Help us keep the platform running and bring more Islamic content to families. 
+                Your support means the world to us!
+              </p>
+              
+              <div className="bg-emerald-50 p-6 rounded-xl border border-emerald-200 mb-4 text-left">
+                <p className="text-sm font-semibold text-gray-700 mb-2">Bank Transfer Details</p>
+                <div className="space-y-1 text-sm text-gray-600">
+                  <p><span className="font-medium">Bank:</span> Jaiz Bank</p>
+                  <p><span className="font-medium">Account Name:</span> Fahm Mubarak Olanrewaju</p>
+                  <p><span className="font-medium">Account Number:</span> <span className="font-mono text-emerald-700 font-bold text-base">0002480725</span></p>
+                </div>
+              </div>
+
+              <p className="text-xs text-gray-500 mt-4">
+                After making the transfer, please send a screenshot to us via email for verification.
+              </p>
+            </div>
           </div>
         </div>
       )}
