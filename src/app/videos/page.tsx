@@ -39,6 +39,12 @@ export default function VideosPage() {
           >
             ☕ Donate to Support
           </button>
+          <a 
+            href="/admin" 
+            className="text-sm text-gray-500 hover:text-emerald-700 underline underline-offset-2 flex items-center"
+          >
+            Admin
+          </a>
         </div>
       </div>
 
