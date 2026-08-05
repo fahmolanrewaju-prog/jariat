@@ -12,11 +12,18 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Title and URL are required' }, { status: 400 });
     }
 
-    // Auto-generate the YouTube thumbnail
-    const videoId = youtubeUrl.includes('v=')
-      ? youtubeUrl.split('v=')[1]?.split('&')[0]
-      : youtubeUrl.split('/').pop();
-      
+    // Extract Video ID from URL
+    let videoId = '';
+    if (youtubeUrl.includes('v=')) {
+      videoId = youtubeUrl.split('v=')[1]?.split('&')[0] || '';
+    } else {
+      videoId = youtubeUrl.split('/').pop() || '';
+    }
+
+    if (!videoId) {
+      return NextResponse.json({ error: 'Invalid YouTube URL' }, { status: 400 });
+    }
+
     const thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
     const newVideo = await prisma.video.create({
