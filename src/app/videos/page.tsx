@@ -11,6 +11,7 @@ export default function VideosPage() {
 
   // Sample Islamic videos (You can replace these URLs later)
   const videos = [
+    
     { id: 1, title: "Learn Surah Al-Fatihah with Zaky", thumbnail: "https://img.youtube.com/vi/84I8OIi_w2k/hqdefault.jpg", url: "https://www.youtube.com/embed/84I8OIi_w2k" },
     { id: 2, title: "The Story of Prophet Musa (AS)", thumbnail: "https://img.youtube.com/vi/UAE5MpDm3uU/hqdefault.jpg", url: "https://www.youtube.com/embed/UAE5MpDm3uU" },
     { id: 3, title: "Nasheed for Kids - I Love Muhammad", thumbnail: "https://img.youtube.com/vi/teyS37X9W-c/hqdefault.jpg", url: "https://www.youtube.com/embed/teyS37X9W-c" },
