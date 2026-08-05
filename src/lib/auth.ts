@@ -3,16 +3,21 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import { PrismaClient } from "@prisma/client";
 import { nextCookies } from "better-auth/next-js";
 
-const prisma = new PrismaClient();
+// Global Prisma Client to handle serverless connection pooling
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+};
+
+export const prisma = globalForPrisma.prisma ?? new PrismaClient();
+
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
-    provider: "postgresql", // This is the required second argument
+    provider: "postgresql",
   }),
   emailAndPassword: {
     enabled: true,
   },
-  plugins: [
-    nextCookies(),
-  ],
+  plugins: [nextCookies()],
 });
